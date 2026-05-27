@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee YeJin | Web Designer Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+
+        .bg-zinc-50 {background-color: rgb(237 244 255 / 50%)!important;}
+        /* [1. 공통 디자인 시스템] */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* [2. 애니메이션 클래스] */
+        .hover-lift { transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover { transform: translateY(-12px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15); }
+        
+        .img-focus {transition: all 0.7s ease; }
+        .group:hover .img-focus {transform: scale(1.1); }
+
+        /* [3. Experience 섹션 전용 스타일] */
+        .skill-card { background: #ffffff; border: 1px solid #f3f4f6; border-radius: 2rem; padding: 2.5rem; transition: all 0.3s ease; }
+        .skill-card:hover { border-color: #3b82f6; }
+        .skill-bar-bg { width: 100%; background: #f3f4f6; height: 0.5rem; border-radius: 9999px; overflow: hidden; margin-top: 0.6rem; }
+        .skill-bar-fill { height: 100%; border-radius: 9999px; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1); }
+
+        /* [4. 프로젝트 탭 & 페이징 스타일] */
+        .tab-btn { transition: all 0.3s; border: 2px solid #18181b; white-space: nowrap; }
+        .tab-btn.active { background-color: #18181b; color: #ffffff; }
+        .tab-btn:not(.active):hover { background-color: #f4f4f5; }
+
+        .page-nav-btn {
+            padding: 0.8rem 2.5rem; border: 1px solid #e5e7eb; border-radius: 9999px;
+            font-size: 0.85rem; font-weight: 700; transition: all 0.3s; background: white;
+        }
+        .page-nav-btn:hover:not(:disabled) { background: #18181b; color: white; border-color: #18181b; }
+        .page-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+        /* [5. 오버레이 & 모달] */
+        .overlay-layer {
+            position: absolute; inset: 0; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 1rem; opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .group:hover .overlay-layer { opacity: 1; }
+        .overlay-btn {
+            width: 10rem; padding: 0.85rem 0; font-weight: 700; font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 0.15em; border-radius: 9999px;
+            transform: translateY(1.5rem); transition: all 0.4s ease;
+        }
+        .group:hover .overlay-btn { transform: translateY(0); }
+
+        .modal-wrap { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
+        .modal-img { max-width: 85%; max-height: 85%; border-radius: 10px; box-shadow: 0 0 40px rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
+            <h1 class="text-2xl font-bold italic tracking-tighter">L.Yejin.</h1>
+            <div class="hidden md:flex space-x-12 text-[11px] font-bold uppercase tracking-[0.25em]">
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
+                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+                <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="pt-52 pb-32 bg-zinc-50">
+        <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <div>
+                    <span class="text-blue-600 font-bold tracking-[0.4em] text-xs uppercase mb-4 block italic">Web Designer Portfolio</span>
+                    <h2 class="text-6xl lg:text-8xl font-bold leading-tight tracking-tighter">Hello, <br> I'm Yejin</h2>
+                </div>
+                <p class="text-lg text-gray-500 font-light max-w-lg leading-relaxed">
+                    공감을 기획하고 따뜻함을 디자인합니다. <br>
+                    사용자의 시선에서 가장 편안하고 세련된 웹 경험을 제공합니다.
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <a href="#projects" class="px-10 py-4 bg-zinc-900 text-white rounded-full font-bold hover-lift text-sm shadow-lg">View Projects</a>
+                    <a href="#contact" class="px-10 py-4 border-2 border-zinc-900 rounded-full font-bold hover:bg-zinc-900 hover:text-white hover-lift transition text-sm">Contact Me</a>
+                </div>
+            </div>
+            <div class="flex justify-center lg:justify-end">
+                <div class="relative w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full overflow-hidden border-[15px] border-white shadow-2xl group">
+                    <img src="./yjprofile2.jpg" alt="L.YEJIN Profile" class="w-full h-full object-cover img-focus">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-24">
+                <p class="text-blue-600 uppercase tracking-[0.3em] text-xs font-bold mb-4">Skillsets</p>
+                <h2 class="text-5xl font-bold italic tracking-tight">Professional Expertise</h2>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="skill-card hover-lift lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 text-xl"><i class="fa-solid fa-pen-nib"></i></div>
+                        <h3 class="text-2xl font-bold uppercase tracking-tight">Design Capability</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1"><span>UI/UX Design</span><span>95%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill bg-blue-600" style="width: 95%;"></div></div>
+                            <p class="text-[11px] text-gray-400 mt-3 leading-relaxed">시각적 요소를 디자인하며, 사용자가 필요한 기능을 고도화</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1"><span>Graphic & Branding</span><span>90%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill bg-blue-400" style="width: 90%;"></div></div>
+                            <p class="text-[11px] text-gray-400 mt-3 leading-relaxed">시각디자인 전공을 살려 다양한 편집디자인 작업 가능</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1"><span>Web Publishing</span><span>85%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill bg-zinc-900" style="width: 85%;"></div></div>
+                            <p class="text-[11px] text-gray-400 mt-3 leading-relaxed">웹 표준 기반의 HTML/CSS 및 반응형 레이아웃 구현</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1"><span>Design Tools</span><span>95%</span></div>
+                            <div class="skill-bar-bg"><div class="skill-bar-fill bg-zinc-500" style="width: 95%;"></div></div>
+                            <p class="text-[11px] text-gray-400 mt-3 leading-relaxed">Adobe CC (PS, AI) 활용 능력</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card hover-lift flex flex-col justify-between bg-zinc-50">
+                    <div>
+                        <div class="flex items-center gap-4 mb-12">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-zinc-800 shadow-sm text-xl"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight">Design Value</h3>
+                        </div>
+                        <ul class="space-y-8">
+                            <li class="flex gap-4">
+                                <i class="fa-solid fa-check text-blue-600 mt-1"></i>
+                                <div><h5 class="font-bold text-sm">따뜻한 소통</h5><p class="text-xs text-gray-400 mt-1">클라이언트의 니즈를 파악해 만족도 높은 작업을 합니다.</p></div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fa-solid fa-check text-blue-600 mt-1"></i>
+                                <div><h5 class="font-bold text-sm">세련된 감각</h5><p class="text-xs text-gray-400 mt-1">불필요한 요소를 걷어낸 간결하고 품격 있는 미학을 추구합니다.</p></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-8 border-t border-gray-200" style="border-top: 0;">
+                        <p class="text-[11px] font-bold text-blue-600 italic tracking-widest uppercase">Expertise & Passion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-40 bg-zinc-50 px-8">
+        <div class="max-w-[1440px] mx-auto">
+            <div class="text-center mb-24">
+                <p class="text-gray-400 uppercase tracking-[0.4em] text-[10px] font-bold mb-4">Portfolio Showcase</p>
+                <h2 class="text-5xl font-bold italic tracking-tight mb-12">Creative Works</h2>
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="changeCategory('all')" class="tab-btn active px-8 py-2.5 rounded-full text-[11px] font-bold">전체</button>
+                    <button onclick="changeCategory('project')" class="tab-btn px-8 py-2.5 rounded-full text-[11px] font-bold">프로젝트</button>
+                    <button onclick="changeCategory('newsletter')" class="tab-btn px-8 py-2.5 rounded-full text-[11px] font-bold">뉴스레터</button>
+                    <button onclick="changeCategory('banner')" class="tab-btn px-8 py-2.5 rounded-full text-[11px] font-bold">배너</button>
+                    <button onclick="changeCategory('edit')" class="tab-btn px-8 py-2.5 rounded-full text-[11px] font-bold">편집디자인</button>
+                    <button onclick="changeCategory('etc')" class="tab-btn px-8 py-2.5 rounded-full text-[11px] font-bold">기타</button>
+                </div>
+            </div>
+
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[800px]">
+
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/kse2025 APP.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/kse2025 APP.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://play.google.com/store/apps/details?id=com.m2comm.kse2025&hl=en-US" target="_blank" class="overlay-btn border-2 border-white text-white text-center">앱스토어 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">kse2025 APP</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.10.24 #design 100% #APP design #subpage 100% #Zepline</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/ANT.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/ANT.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://www.advancednt.co.kr/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">자가항체검사_ANT</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.07.25 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한부인종양학회.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한부인종양학회.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://www.sgo.or.kr/main" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한부인종양학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.07.11 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div><div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/ACAR2026.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/ACAR2026.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://acar2026.org/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">ACAR2026</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.07.01 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한의학회 학술대회.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한의학회 학술대회.jpg')" class="overlay-btn bg-white text-black">MAIN 크게보기</button>
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한의학회 학술대회-sub.jpg')" class="overlay-btn bg-white text-black">SUB 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한의학회 학술대회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.05.08 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/치매레지스트리-JOY-ALZ.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/치매레지스트리-JOY-ALZ.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://joyalz.com/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">치매레지스트리-JOY-ALZ</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.01.20 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한환경공학학회.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한환경공학학회.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://www.kosenv.or.kr/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한환경공학학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.01.10 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/AsAES2025 APP.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/AsAES2025 APP.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://play.google.com/store/apps/details?id=com.m2comm.asaes2025&hl=ko&pli=1" target="_blank" class="overlay-btn border-2 border-white text-white text-center">앱스토어 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">AsAES2025 APP</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.01.08 #design 100% #APP design #subpage 100% #Zepline</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한법의학회.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한법의학회.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://legalmedicine.or.kr/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한법의학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">24.10.11 #design 100% #web design #subpage 100%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한신경과학회-시안참여.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한신경과학회-시안참여.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한신경과학회-시안참여</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #web design</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한천식알레르기학회-시안참여.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한천식알레르기학회-시안참여.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한천식알레르기학회-시안참여</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #web design</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/대한장연구학회-시안참여.png" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한장연구학회-시안참여.png')" class="overlay-btn bg-white text-black">PC 이미지보기</button>
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/대한장연구학회-모바일.jpg')" class="overlay-btn bg-white text-black">Mobile 이미지보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대한장연구학회-시안참여</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #web design</p>
+                    </div>
+                </div>
+                
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/서울대학병원-시안참여.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/서울대학병원-시안참여.jpg')" class="overlay-btn bg-white text-black">PC 이미지보기</button>
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/서울대학병원-모바일.jpg')" class="overlay-btn bg-white text-black">Mobile 이미지보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">서울대학병원-시안참여</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #web design</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/법무법인금양.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/법무법인금양.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://xn--s39a38wwxdwxcb3avdo76b8a764z.com/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">법무법인 금양</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #web design #html 100% #css 90%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/20230208_ms.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/20230208_ms.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://www.misungit.co.kr/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">미성정보기술</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #web design #html 100% #css 90%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/20220824_lovepet.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/20220824_lovepet.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://xn--vl2b25ip8u.net/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">반려동물 장례식장 러브펫</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #web design #html 100% #css 90%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/프로젝트/20220111_djjc.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/프로젝트/20220111_djjc.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://sgskyedu.co.kr/" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">대전지체장애인 협회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #web design #html 100% #css 90%</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/상품제작/shopping.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/상품제작/shopping.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://shopping29.bbiz.kr/?pc=p" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">상품제작-쇼핑몰</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #Shopping mall</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/상품제작/franchise.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/상품제작/franchise.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://franchise03.bbiz.kr/?pc=p" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">상품제작-프랜차이즈</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #franchise</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/상품제작/landing.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/상품제작/landing.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://franchise05.bbiz.kr/?pc=p" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">상품제작-프랜차이즈(랜딩형)</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #franchise</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/상품제작/interior.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/상품제작/interior.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="http://interior04.bbiz.kr/?pc=p" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">상품제작-기업(인테리어)</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #interior</p>
+                    </div>
+                </div>
+                <div class="project-item project group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/상품제작/wedding.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/상품제작/wedding.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                            <a href="https://wedding01.bbiz.kr/?pc=p" target="_blank" class="overlay-btn border-2 border-white text-white text-center">사이트 이동하기</a>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-blue-600 font-bold uppercase tracking-widest italic">Project</span>
+                        <h4 class="text-lg font-bold mt-2">상품제작-웨딩업체</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#design 100% #subpage 100% #wedding</p>
+                    </div>
+                </div>
+
+
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/ipbm2026_260130-mail7.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/ipbm2026_260130-mail7.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">IPBM2026 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/ksn2026_260120-mail-E.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/ksn2026_260120-mail-E.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">KSN2026 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sidds2026_260205-mail-E.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sidds2026_260205-mail-E.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SIDDS2026 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div> 
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/asci2025_251113-211mail.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/asci2025_251113-211mail.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">ASCI2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/kddw2025_mail_fD-251030.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/kddw2025_mail_fD-251030.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">KDDW2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sgi2025_251021-23차mail.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sgi2025_251021-23차mail.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SGI2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sgi2025_250930-20차mail-1.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sgi2025_250930-20차mail-1.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SGI2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sgi2025_250721-11차mail.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sgi2025_250721-11차mail.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SGI2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sidds2025_250328_10차국내뉴스레터.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sidds2025_250328_10차국내뉴스레터.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SIDDS2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item newsletter group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/뉴스레터/sidds2025_250327-10차국외뉴스레터.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/뉴스레터/sidds2025_250327-10차국외뉴스레터.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-green-600 font-bold uppercase tracking-widest italic">Newsletter</span>
+                        <h4 class="text-lg font-bold mt-2">SIDDS2025 뉴스레터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#newsletter #design 100%</p>
+                    </div>
+                </div>
+                
+
+
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/banner-674-312.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/banner-674-312.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">SIDDS2026 sns 배너</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/BN-260106.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/BN-260106.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">산부인과학회 학술대회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/260105_BN.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/260105_BN.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한치매학회 학술대회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/251107-BNm.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/251107-BNm.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한산부인과초음파학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/250717-BN.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/250717-BN.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한치매학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/250630-BN.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/250630-BN.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한치매학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div> 
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/250517.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/250517.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한파킨슨</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/250514-BN.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/250514-BN.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">banner</span>
+                        <h4 class="text-lg font-bold mt-2">대한치매학회</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#banner #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2026-설팝업-6.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2026-설팝업-6.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2026설팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2026-설팝업-5.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2026-설팝업-5.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2026설팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2026-5.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2026-5.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2026새해팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2026-4.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2026-4.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2026새해팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2026-2.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2026-2.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2026새해팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2025_추석_05.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2025_추석_05.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2025추석팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2025-설팝업-5.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2025-설팝업-5.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2025설팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item banner group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/배너/2025-설팝업-2.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/배너/2025-설팝업-2.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-pink-600 font-bold uppercase tracking-widest italic">popup</span>
+                        <h4 class="text-lg font-bold mt-2">2025설팝업</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#popup #design 100%</p>
+                    </div>
+                </div>
+                
+                
+                <div class="project-item edit group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/kmec2026.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/kmec2026.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-purple-600 font-bold uppercase tracking-widest italic">edit</span>
+                        <h4 class="text-lg font-bold mt-2">한국의학교육학회 학술대회 포스터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">26.01.22 #Poster #Editorial #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item edit group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/응급의학.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/응급의학.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-purple-600 font-bold uppercase tracking-widest italic">edit</span>
+                        <h4 class="text-lg font-bold mt-2">대한응급의학회 학술대회 포스터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.07.18 #Poster #Editorial #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item edit group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/인천수의컨퍼런스.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/인천수의컨퍼런스.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-purple-600 font-bold uppercase tracking-widest italic">edit</span>
+                        <h4 class="text-lg font-bold mt-2">인천수의컨퍼런스 포스터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">25.07.07 #Poster #Editorial #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item edit group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/스마띠.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/스마띠.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-purple-600 font-bold uppercase tracking-widest italic">edit</span>
+                        <h4 class="text-lg font-bold mt-2">매물관리앱 홍보 포스터</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">24.08.05 #Poster #Editorial #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item edit group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/입간판.jpeg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/입간판.jpeg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-purple-600 font-bold uppercase tracking-widest italic">edit</span>
+                        <h4 class="text-lg font-bold mt-2">홈페이지제작 할인행사 입간판</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#a standing board #design 100%</p>
+                    </div>
+                </div>
+
+
+                
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/emslogo1.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/emslogo1.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">EMS2027 logo</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#logo #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/emslogo2.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/emslogo2.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">EMS2027 logo</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#logo #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/emslogo3.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/emslogo3.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">EMS2027 logo</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#logo #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/emslogo4.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/emslogo4.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">EMS2027 logo</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#logo #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/사내작업/cont4-4.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/사내작업/cont4-4.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">부동산 매물관리앱'스마띠' 홍보 캐릭터 디자인</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Character Design #design 100%</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/br10.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/br10.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/br9.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/br9.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/br8.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/br8.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/dr1.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/dr1.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/dr2.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/dr2.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/dr4.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/dr4.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/dr6.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/dr6.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                <div class="project-item etc group relative bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 hover-lift shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative">
+                        <img src="./포트폴리오 작업물/드로잉/dr7.jpg" class="w-full h-full object-cover img-focus">
+                        <div class="overlay-layer">
+                            <button onclick="openModal('./포트폴리오 작업물/드로잉/dr7.jpg')" class="overlay-btn bg-white text-black">이미지 크게보기</button>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] text-yellow-600 font-bold uppercase tracking-widest italic">etc</span>
+                        <h4 class="text-lg font-bold mt-2">드로잉</h4>
+                        <p class="text-xs text-gray-400 mt-2 font-light">#Drawing #art</p>
+                    </div>
+                </div>
+                
+
+                </div>
+
+            <div id="pagination-controls" class="flex justify-center items-center gap-10 mt-24">
+                <button id="prevBtn" onclick="changePage(-1)" class="page-nav-btn">PREV</button>
+                <div class="flex items-center gap-2">
+                    <span id="currentPageNum" class="text-xl font-bold italic">1</span>
+                    <span class="text-gray-300">/</span>
+                    <span id="totalPageNum" class="text-sm font-bold text-gray-400">1</span>
+                </div>
+                <button id="nextBtn" onclick="changePage(1)" class="page-nav-btn">NEXT</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-48 bg-white text-center px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-6xl lg:text-7xl font-bold mb-16 tracking-tighter italic">Let's Design Story.</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-12 border border-gray-100 rounded-[3rem] hover-lift flex flex-col items-center gap-6 shadow-sm">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl"><i class="fa-regular fa-envelope"></i></div>
+                    <span class="font-bold text-lg">miki828_b@naver.com</span>
+                </div>
+                <div class="p-12 border border-gray-100 rounded-[3rem] hover-lift flex flex-col items-center gap-6 shadow-sm">
+                    <div class="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center text-zinc-800 text-2xl"><i class="fa-solid fa-phone"></i></div>
+                    <span class="font-bold text-lg">010-8109-9508</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 text-center border-t border-gray-50 bg-zinc-50">
+        <p class="text-[10px] text-gray-400 uppercase tracking-[0.5em]">© 2026 YeJin Lee. Design Portfolio.</p>
+    </footer>
+
+    <div id="modal" class="modal-wrap" onclick="closeModal()">
+        <img id="modal-img" class="modal-img" src="" alt="View Large">
+    </div>
+
+    <script>
+        // --- 1. 변수 설정 ---
+        let currentCategory = 'all';
+        let currentPage = 1;
+        const itemsPerPage = 8; // 전체 카테고리 노출 개수 제한
+
+        // --- 2. 화면 업데이트 함수 ---
+        function updateDisplay() {
+            const allItems = Array.from(document.querySelectorAll('.project-item'));
+            
+            // 카테고리 필터링
+            const filteredItems = allItems.filter(item => {
+                return currentCategory === 'all' || item.classList.contains(currentCategory);
+            });
+
+            // 페이지네이션 계산
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            // 모든 아이템 일단 숨김 (부드러운 전환을 위해 opacity 처리)
+            allItems.forEach(item => {
+                item.style.display = 'none';
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+            });
+            
+            // 현재 페이지 아이템만 노출
+            filteredItems.forEach((item, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = 'all 0.5s ease';
+                    }, 50 * (index % itemsPerPage)); // 순차적으로 나타나는 효과
+                }
+            });
+
+            // UI 텍스트 및 버튼 업데이트
+            document.getElementById('currentPageNum').innerText = currentPage;
+            document.getElementById('totalPageNum').innerText = totalPages;
+            document.getElementById('prevBtn').disabled = (currentPage === 1);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+            
+            // 아이템이 8개 이하일 경우 페이징 버튼 숨김
+            const controls = document.getElementById('pagination-controls');
+            controls.style.display = (filteredItems.length <= itemsPerPage) ? 'none' : 'flex';
+        }
+
+        // --- 3. 카테고리 변경 ---
+        function changeCategory(cat) {
+            currentCategory = cat;
+            currentPage = 1;
+
+            // 버튼 디자인 활성화
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                // 클릭된 버튼을 찾기 위해 innerText 또는 전달된 cat 활용
+                if(btn.getAttribute('onclick').includes(`'${cat}'`)) btn.classList.add('active');
+            });
+
+            updateDisplay();
+        }
+
+        // --- 4. 페이지 이동 ---
+        function changePage(step) {
+            currentPage += step;
+            updateDisplay();
+            // 페이지 이동 시 프로젝트 섹션 시작 지점으로 스크롤
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- 5. 모달 제어 ---
+        function openModal(src) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = src;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 페이지 로드 시 초기 실행
+        window.onload = updateDisplay;
+    </script>
+</body>
+</html>
